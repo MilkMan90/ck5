@@ -1,4 +1,5 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, Menu, shell, dialog } from 'electron';
+import fs from 'fs';
 
 let menu;
 let template;
@@ -41,6 +42,18 @@ const installExtensions = async () => {
   }
 };
 
+const openFile = () => {
+  let file = dialog.showOpenDialog(mainWindow, {
+    properties: ['openFile'],
+    filters: [
+      { name: 'mp3', extensions: ['.mp3'] }
+    ]
+  });
+  if (!file) { return; }
+  let content = fs.readFileSync(file)
+  console.log(content)
+};
+
 app.on('ready', async () => {
   await installExtensions();
 
@@ -55,7 +68,10 @@ app.on('ready', async () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
+    openFile();
   });
+
+
 
   mainWindow.on('closed', () => {
     mainWindow = null;
