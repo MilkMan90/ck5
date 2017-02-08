@@ -1,4 +1,6 @@
-import { app, BrowserWindow, Menu, shell } from 'electron';
+import { app, BrowserWindow, Menu, shell, global, remote } from 'electron';
+
+const fs = require('fs');
 
 let menu;
 let template;
@@ -41,8 +43,15 @@ const installExtensions = async () => {
   }
 };
 
+
+const remoteTester = exports.remoteTester = () => {
+  return console.log('HOLY SHIT LETS GO HOME!');
+};
+
 app.on('ready', async () => {
   await installExtensions();
+
+
 
   mainWindow = new BrowserWindow({
     show: false,
@@ -52,9 +61,12 @@ app.on('ready', async () => {
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
+
+
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
+
   });
 
   mainWindow.on('closed', () => {
