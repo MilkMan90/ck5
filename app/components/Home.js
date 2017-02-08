@@ -1,17 +1,43 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import ipcRenderer from 'electron';
+import fs from 'fs';
 import styles from './Home.css';
 import simple from '../simple.mp3';
 
+const { dialog } = require('electron').remote;
+
 export default class Home extends Component {
-  playAudio(){
+  constructor() {
+    super();
+    this.state = {
+      file: ''
+    }
+  }
+
+  componentDidMount() {
+    this.openFile()
+  }
+
+  openFile() {
+    let file = dialog.showOpenDialog({
+      properties: ['openFile'],
+      filters: [
+        { name: 'mp3', extensions: ['mp3'] }
+      ]
+    });
+    if (!file) { return; }
+    let content = fs.readFileSync(file)
+  }
+
+  playAudio() {
     this.refs.audio.play()
   }
-  pauseAudio(){
+  pauseAudio() {
     this.refs.audio.pause()
   }
-  stopAudio(){
+  stopAudio() {
     this.refs.audio.load()
   }
   render() {

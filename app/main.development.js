@@ -51,7 +51,6 @@ const openFile = () => {
   });
   if (!file) { return; }
   let content = fs.readFileSync(file)
-  console.log(content)
 };
 
 app.on('ready', async () => {
@@ -68,7 +67,6 @@ app.on('ready', async () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
-    openFile();
   });
 
 
