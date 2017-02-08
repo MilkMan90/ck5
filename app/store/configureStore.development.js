@@ -29,7 +29,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   compose;
 /* eslint-enable no-underscore-dangle */
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, router)
   // applyMiddleware(thunk, router)
 );
 

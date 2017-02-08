@@ -6,7 +6,8 @@ import Home from '../components/Home';
 
 function mapStateToProps(state) {
   return {
-    audioSource: state.audioSource
+    audioOne: state.audioSource.audioOne,
+    audioTwo: state.audioSource.audioTwo
   };
 }
 

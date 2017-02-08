@@ -4,12 +4,6 @@ import { Link } from 'react-router';
 import styles from './Home.css';
 
 export default class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      audioSource: ''
-    }
-  }
 
   playAudio() {
     this.refs.audio.play()
@@ -26,10 +20,11 @@ export default class Home extends Component {
   }
 
   render() {
+    console.log(this.props)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
       <div>
-        <audio className="audio" controls={true} ref="audio" src={this.state.audioSource}></audio>
+        <audio className="audio" controls={true} ref="audio" src={this.props.audioOne}></audio>
         <button onClick={ ()=>{ this.playAudio(); }}>Play</button>
         <button onClick={ ()=>{ this.pauseAudio(); }}>Pause</button>
         <button onClick={ ()=>{ this.sendFileToStore(); }}>Open</button>
