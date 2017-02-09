@@ -20,17 +20,10 @@ export default class PlayBox extends Component {
 
   render() {
     console.log(this.props)
-    let audioSrc;
-
-    if(this.props.audioIndex === 1){
-      audioSrc = this.props.audioOne
-    } else {
-      audioSrc = this.props.audioTwo
-    }
     // const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
       <div>
-        <audio className="audio" controls={true} ref="audio" src={audioSrc}></audio>
+        <audio className="audio" controls={true} ref="audio" src={this.props.audioSource}></audio>
         <button onClick={ ()=>{ this.playAudio(); }}>Play</button>
         <button onClick={ ()=>{ this.pauseAudio(); }}>Pause</button>
         <button onClick={ ()=>{ this.sendFileToStore(); }}>Open</button>

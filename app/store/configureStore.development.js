@@ -6,7 +6,6 @@ import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
 import { openFile } from '../actions/loadsong';
 
-import type { counterStateType } from '../reducers/counter';
 
 const actionCreators = {
   openFile
@@ -33,7 +32,8 @@ const enhancer = composeEnhancers(
   // applyMiddleware(thunk, router)
 );
 
-export default function configureStore(initialState?: counterStateType) {
+export default function configureStore() {
+  let initialState = {}
   const store = createStore(rootReducer, initialState, enhancer);
 
   if (module.hot) {

@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 import { openFile } from '../actions/loadsong';
 import PlayBox from '../components/PlayBox';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+  let audioSource;
+  if (props.audioIndex === 1) {
+    audioSource = state.audioSource.audioOne;
+  } else {
+    audioSource = state.audioSource.audioTwo;
+  }
   return {
-    audioOne: state.audioSource.audioOne,
-    audioTwo: state.audioSource.audioTwo
+    audioSource
   };
 }
 
