@@ -2,35 +2,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
-import electron from 'electron'
-import {remote} from 'electron'
-import simple from '../simple.mp3';
+
 
 export default class Home extends Component {
-  componentDidMount(){
-    const test = remote.require('./main.development');
-    console.log(test);
-    test.remoteTester();
-    // console.log(remote.getGlobal('remoteTester')());
-  }
-  playAudio(){
+
+  playAudio() {
     this.refs.audio.play()
   }
-  pauseAudio(){
+  pauseAudio() {
     this.refs.audio.pause()
   }
-  stopAudio(){
+  stopAudio() {
     this.refs.audio.load()
   }
+
+  sendFileToStore(){
+    this.props.openFile();
+  }
+
   render() {
+    console.log(this.props)
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
       <div>
-        <audio className="audio"  ref="audio" src={simple}></audio>
+        <audio className="audio" controls={true} ref="audio" src={this.props.audioOne}></audio>
         <button onClick={ ()=>{ this.playAudio(); }}>Play</button>
         <button onClick={ ()=>{ this.pauseAudio(); }}>Pause</button>
-        {/* <button onClick={ ()=>{ this.stopAudio(); }}>Stop</button> */}
+        <button onClick={ ()=>{ this.sendFileToStore(); }}>Open</button>
       </div>
     );
   }
 }
+
+// createSongUri(file[0], 'audio/mp3')
+// .then((song) => { dispatch(createSongAction(song)) })

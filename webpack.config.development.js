@@ -68,6 +68,8 @@ export default validate(merge(baseConfig, {
      */
     new webpack.NoErrorsPlugin(),
 
+    new webpack.IgnorePlugin(/vertx/),
+
     /**
      * Create global constants which can be configured at compile time.
      *
