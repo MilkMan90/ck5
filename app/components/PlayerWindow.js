@@ -17,11 +17,6 @@ export default class PlayerWindow extends Component {
 
   }
   updateVolumes() {
-    console.log(this.refs.crossfader.value);
-    // let volumeA = (100 - this.refs.crossfader.value)/100
-    // let volumeB = (this.refs.crossfader.value)/100
-    //
-    // console.log('B:'+volumeB);
     if(this.refs.crossfader.value >= 0){
       this.setState({
         audio1Volume: (1-this.refs.crossfader.value/100),
