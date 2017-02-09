@@ -1,0 +1,16 @@
+.container{
+  padding: 10px;
+  border: 1px solid silver;
+  margin: 20px;
+  display: block;
+  text-align: center;
+}
+
+.container button{
+  margin: 20px;
+  width: 50px;
+  height: 50px;
+}
+.playButton{
+
+}

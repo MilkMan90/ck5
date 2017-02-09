@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-// import styles from './PlayBox.css';
+import styles from './PlayBox.css';
 
 export default class PlayBox extends Component {
 
@@ -22,11 +22,11 @@ export default class PlayBox extends Component {
     console.log(this.props)
     // const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
-      <div>
-        <audio className="audio" controls={true} ref="audio" src={this.props.audioSource}></audio>
-        <button onClick={ ()=>{ this.playAudio(); }}>Play</button>
-        <button onClick={ ()=>{ this.pauseAudio(); }}>Pause</button>
-        <button onClick={ ()=>{ this.sendFileToStore(); }}>Open</button>
+      <div className={styles.container}>
+        <audio className="audio" controls={false} ref="audio" src={this.props.audioSource}></audio>
+        <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
+        <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
+        <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
       </div>
     );
   }
