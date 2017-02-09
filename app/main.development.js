@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-import { app, BrowserWindow, Menu, shell, global, remote } from 'electron';
 
-const fs = require('fs');
-=======
 import { app, BrowserWindow, Menu, shell, dialog } from 'electron';
 import fs from 'fs';
->>>>>>> 5f5d61c00e880eea135592de73e2ff9d1f03475b
 
 let menu;
 let template;

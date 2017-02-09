@@ -1,32 +1,36 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import styles from './Home.css';
+// import styles from './PlayBox.css';
 
-export default class Home extends Component {
+export default class PlayBox extends Component {
 
   playAudio() {
     this.refs.audio.play()
   }
-
   pauseAudio() {
     this.refs.audio.pause()
   }
-
   stopAudio() {
     this.refs.audio.load()
   }
-
   sendFileToStore(){
-    this.props.openFile();
+    this.props.openFile(this.props.audioIndex);
   }
 
   render() {
     console.log(this.props)
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    let audioSrc;
+
+    if(this.props.audioIndex === 1){
+      audioSrc = this.props.audioOne
+    } else {
+      audioSrc = this.props.audioTwo
+    }
+    // const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
       <div>
-        <audio className="audio" controls={true} ref="audio" src={this.props.audioOne}></audio>
+        <audio className="audio" controls={true} ref="audio" src={audioSrc}></audio>
         <button onClick={ ()=>{ this.playAudio(); }}>Play</button>
         <button onClick={ ()=>{ this.pauseAudio(); }}>Pause</button>
         <button onClick={ ()=>{ this.sendFileToStore(); }}>Open</button>
