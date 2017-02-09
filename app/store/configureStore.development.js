@@ -4,13 +4,12 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
+import { openFile } from '../actions/loadsong';
 
-import * as counterActions from '../actions/counter';
 import type { counterStateType } from '../reducers/counter';
 
 const actionCreators = {
-  ...counterActions,
-  push,
+  openFile
 };
 
 const logger = createLogger({
@@ -30,7 +29,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
   compose;
 /* eslint-enable no-underscore-dangle */
 const enhancer = composeEnhancers(
-  applyMiddleware(thunk, router, logger)
+  applyMiddleware(thunk, router)
+  // applyMiddleware(thunk, router)
 );
 
 export default function configureStore(initialState?: counterStateType) {

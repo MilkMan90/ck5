@@ -1,11 +1,19 @@
 // @flow
-import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { openFile } from '../actions/loadsong';
 import Home from '../components/Home';
 
-export default class HomePage extends Component {
-  render() {
-    return (
-      <Home />
-    );
-  }
+function mapStateToProps(state) {
+  return {
+    audioOne: state.audioSource.audioOne,
+    audioTwo: state.audioSource.audioTwo
+  };
 }
+
+function mapDispatchToProps(dispatch) {
+
+  return bindActionCreators({ openFile }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
