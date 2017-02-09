@@ -5,7 +5,6 @@ import styles from './PlayBox.css';
 import AudioComponent from './AudioComponent'
 
 export default class PlayBox extends Component {
-
   playAudio() {
     this.refs.audio.play()
   }
@@ -15,20 +14,29 @@ export default class PlayBox extends Component {
   stopAudio() {
     this.refs.audio.load()
   }
+  componentWillReceiveProps(){
+    this.refs.audio.volume = this.props.volume;
+  }
+  
+  volume(){
+    this.refs.audio.volume = this.refs.audio.volume - .1;
+    console.log(this.refs)
+  }
+
   sendFileToStore(){
     this.props.openFile(this.props.audioIndex);
   }
 
   render() {
-    console.log(this.props)
-    // const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return (
       <div className={styles.container}>
-        {/* <audio className="audio" controls={false} ref="audio" src={this.props.audioSource}></audio> */}
-        <AudioComponent source={this.props.audioSource}/>
+        <audio className="audio" controls={true} ref="audio" src={this.props.audioSource}></audio>
+        {/* <AudioComponent source={this.props.audioSource}/> */}
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
+        <button className={styles.mute} onClick={() => { this.volume(); }}>Mute</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
+        <div className={styles.volumeControl}></div>
       </div>
     );
   }
