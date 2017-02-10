@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './ProgressBar.css';
 import { getSongTags, createSongObject } from 'electron-audio-conversion'
 
 export default class ProgressBar extends Component {
@@ -32,7 +33,7 @@ export default class ProgressBar extends Component {
   render(){
 
     return (
-      <div>
+      <div className={styles.container}>
         <div>{this.state.track.title}</div>
         <div>{this.state.track.artist}</div>
         <div>{this.state.track.album}</div>
@@ -48,7 +49,7 @@ export default class ProgressBar extends Component {
           </g>
         </svg>
 
-        <input id="timing-slider" min={0} max={1000} value={(this.props.currentTime/this.props.duration) * 1000}
+        <input className={styles.slider} id="timing-slider" min={0} max={1000} value={(this.props.currentTime/this.props.duration) * 1000}
         onChange={()=>{this.updateSongPosition()}} ref="timingSlider" type="range"/>
 
 

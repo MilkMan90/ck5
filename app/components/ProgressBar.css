@@ -1,0 +1,90 @@
+.container {
+
+}
+
+
+.slider input[type=range].time-control {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 2.4px 0;
+}
+.slider input[type=range].time-control:focus {
+  outline: none;
+}
+.slider input[type=range].time-control::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 35.2px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #f39c12;
+  border-radius: 1.3px;
+  border: 0.2px solid #351b23;
+}
+.slider input[type=range].time-control::-webkit-slider-thumb {
+  box-shadow: 0px 0px 6px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.2px solid #300000;
+  height: 40px;
+  width: 6px;
+  border-radius: 46px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -2.6px;
+}
+.slider input[type=range].time-control:focus::-webkit-slider-runnable-track {
+  background: #f4a62a;
+}
+.slider input[type=range].time-control::-moz-range-track {
+  width: 100%;
+  height: 35.2px;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #f39c12;
+  border-radius: 1.3px;
+  border: 0.2px solid #351b23;
+}
+.slider input[type=range].time-control::-moz-range-thumb {
+  box-shadow: 0px 0px 6px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.2px solid #300000;
+  height: 40px;
+  width: 6px;
+  border-radius: 46px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.slider input[type=range].time-control::-ms-track {
+  width: 100%;
+  height: 35.2px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+.slider input[type=range].time-control::-ms-fill-lower {
+  background: #e08e0b;
+  border: 0.2px solid #351b23;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.slider input[type=range].time-control::-ms-fill-upper {
+  background: #f39c12;
+  border: 0.2px solid #351b23;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+.slider input[type=range].time-control::-ms-thumb {
+  box-shadow: 0px 0px 6px #000000, 0px 0px 0px #0d0d0d;
+  border: 1.2px solid #300000;
+  height: 40px;
+  width: 6px;
+  border-radius: 46px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 35.2px;
+}
+.slider input[type=range].time-control:focus::-ms-fill-lower {
+  background: #f39c12;
+}
+.slider input[type=range].time-control:focus::-ms-fill-upper {
+  background: #f4a62a;
+}
