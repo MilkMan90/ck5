@@ -74,8 +74,6 @@ app.on('ready', async () => {
 
   });
 
-
-
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
