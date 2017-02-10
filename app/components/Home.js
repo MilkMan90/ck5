@@ -3,15 +3,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import styles from './Home.css';
 
-
 export default class Home extends Component {
 
   playAudio() {
     this.refs.audio.play()
   }
+
   pauseAudio() {
     this.refs.audio.pause()
   }
+
   stopAudio() {
     this.refs.audio.load()
   }
