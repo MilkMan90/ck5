@@ -11,7 +11,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 
-  // return bindActionCreators({ openFile }, dispatch)
+  return {
+
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerWindow);

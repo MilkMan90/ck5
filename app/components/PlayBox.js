@@ -55,11 +55,12 @@ export default class PlayBox extends Component {
     }
     return (
       <div className={styles.container}>
+        <h2>Track {this.props.audioIndex}</h2>
+        {progressBar}
         <audio className="audio" controls={false} ref="audio" src={this.props.audioSource}></audio>
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
-        {progressBar}
         <div className={styles.volumeControl}></div>
       </div>
     );
