@@ -9,32 +9,44 @@ export default class PlayBox extends Component {
   constructor(){
     super()
     this.state = {
-      tick: 0
+      playIndex: 0,
+      play: false,
+      currentSongTime: 0,
+      currentSongDuration: 0
     }
   }
+
   componentDidMount(){
-    setInterval(()=>{
-      this.setState({
-        tick: this.state.tick+1
-      })
-    }, 50)
+    console.log(this.refs);
   }
+
   playAudio() {
+    this.setState({
+      play: true
+    })
     this.refs.audio.play()
   }
+
   pauseAudio() {
+    this.setState({
+      play: false
+    })
     this.refs.audio.pause()
   }
+
   stopAudio() {
     this.refs.audio.load()
   }
 
-  componentWillReceiveProps(){
-    this.refs.audio.volume = this.props.volume;
+  updateCurrentTime(){
+    this.setState({
+      currentSongTime: this.refs.audio.currentTime,
+      currentSongDuration: this.refs.audio.duration
+    })
   }
 
-  sendFileToStore(){
-    this.props.openFile(this.props.audioIndex);
+  componentWillReceiveProps(){
+    this.refs.audio.volume = this.props.volume;
   }
 
   convertSecondsToTime(inputSeconds){
@@ -45,23 +57,52 @@ export default class PlayBox extends Component {
 
   updateSongPosition(percent) {
     this.refs.audio.currentTime = this.refs.audio.duration*percent;
+    this.state.currentSongTime = this.state.currentSongDuration*percent;
+  }
+
+  playSongFromPlaylist(audioIndex, source, index){
+    this.setState({
+      playIndex: index
+    })
+
+    this.props.playSong(this.props.audioIndex, source)
+
+    setTimeout(() => {
+      this.playAudio();
+    }, 100)
+  }
+
+  playNextSong() {
+    if(this.props.playList[this.state.playIndex + 1]){
+      this.setState({
+        playIndex: this.state.playIndex + 1
+      })
+
+      this.props.playSong(this.props.audioIndex, this.props.playList[this.state.playIndex+1].filePath)
+
+      setTimeout(() => {
+        this.playAudio();
+      }, 100)
+    }
   }
 
   render() {
     let progressBar;
     if(this.props.audioSource){
-      progressBar = <ProgressBar duration={this.refs.audio.duration} currentTime={this.refs.audio.currentTime} audioSource={this.props.audioSource} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
+      progressBar = <ProgressBar duration={this.state.currentSongDuration} currentTime={this.state.currentSongTime} audioSource={this.props.playList[this.state.playIndex]} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
     }
     return (
       <div className={styles.container}>
         <h2>Track {this.props.audioIndex}</h2>
         {progressBar}
-        <audio className="audio" controls={false} ref="audio" src={this.props.audioSource}></audio>
+        <audio className="audio" controls={false} onEnded={()=>{this.playNextSong()}} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
-        <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
+        {/* <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button> */}
         <div className={styles.volumeControl}></div>
-        <Playlist audioIndex={this.props.audioIndex} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
+        <Playlist audioIndex={this.props.audioIndex}
+        playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}
+        openFile={this.props.openFile}/>
       </div>
     );
   }
