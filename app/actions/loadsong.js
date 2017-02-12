@@ -30,7 +30,7 @@ export const createPlaylistAction = (playerIndex, folder) => {
 }
 
 export const playSong = (playerIndex, source) => {
-  return (dispatch) =>{
+  return (dispatch) => {
     dispatch(createSongAction(playerIndex, source));
   }
 }

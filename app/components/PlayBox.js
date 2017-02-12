@@ -75,7 +75,17 @@ export default class PlayBox extends Component {
   }
 
   playNextSong(){
+    if(this.props.playList[this.state.playIndex + 1]){
+      this.setState({
+        playIndex: this.state.playIndex + 1
+      })
 
+      this.props.playSong(this.props.audioIndex, this.props.playList[this.state.playIndex+1].filePath)
+
+      setTimeout(() => {
+        this.playAudio();
+      }, 100)
+    }
   }
 
   render() {
