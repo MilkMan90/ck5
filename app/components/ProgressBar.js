@@ -26,10 +26,9 @@ export default class ProgressBar extends Component {
   }
 
   updateSongPosition(){
-    console.log(this.refs.timingSlider.value);
-
     this.props.updateSongPosition(this.refs.timingSlider.value/1000)
   }
+  
   render(){
     return (
       <div className={styles.container}>

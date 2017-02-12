@@ -12,20 +12,35 @@ export default class Playlist extends Component {
   }
 
   renderPlaylist() {
-    const filenames = this.props.playlist.filepaths.map((file, i) => {
-      return <li key={i} onClick={()=>{this.playSong(file)}}>{file}</li>
+
+    let promiseArray = this.props.playlist.filepaths.map((file)=>{
+      return createSongObject(file)
     })
-    return filenames
+
+    console.log(promiseArray);
+    
+    Promise.all(promiseArray).then(values => {
+      console.log(values);
+    })
+
+    // const filenames = this.props.playlist.filepaths.map((file, i) => {
+    //   createSongObject(file).then((songObj)=>{
+    //     console.log(songObj);
+    //     return <li className={styles.songitem} key={i} onClick={()=>{this.playSong(file)}}>{file}</li>
+    //   })
+    // })
+    // return filenames
   }
 
   playSong(source){
     this.props.playSong(this.props.audioIndex, source)
   }
+
   render() {
     return (
       <div className={styles.playlistcontainer}>
         <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>addFiles</button>
-        <ol>{ this.props.playlist && this.renderPlaylist() }</ol>
+        <ol className={styles.songlist}>{ this.props.playlist && this.renderPlaylist() }</ol>
       </div>
     );
   }

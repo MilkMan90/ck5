@@ -9,15 +9,12 @@ export default class PlayBox extends Component {
   constructor(){
     super()
     this.state = {
-      tick: 0
+      currentSongTime: 0,
+      currentSongDuration: 0
     }
   }
   componentDidMount(){
-    setInterval(()=>{
-      this.setState({
-        tick: this.state.tick+1
-      })
-    }, 50)
+
   }
   playAudio() {
     this.refs.audio.play()
@@ -27,6 +24,13 @@ export default class PlayBox extends Component {
   }
   stopAudio() {
     this.refs.audio.load()
+  }
+
+  updateCurrentTime(){
+    this.setState({
+      currentSongTime: this.refs.audio.currentTime,
+      currentSongDuration: this.refs.audio.duration
+    })
   }
 
   componentWillReceiveProps(){
@@ -44,19 +48,21 @@ export default class PlayBox extends Component {
   }
 
   updateSongPosition(percent) {
-    this.refs.audio.currentTime = this.refs.audio.duration*percent;
+    // this.refs.audio.currentTime = this.refs.audio.duration*percent;
+    this.state.currentSongTime = this.state.currentSongDuration*percent;
   }
 
   render() {
     let progressBar;
     if(this.props.audioSource){
-      progressBar = <ProgressBar duration={this.refs.audio.duration} currentTime={this.refs.audio.currentTime} audioSource={this.props.audioSource} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
+      progressBar = <ProgressBar duration={this.state.currentSongDuration} currentTime={this.state.currentSongTime} audioSource={this.props.audioSource} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
     }
+
     return (
       <div className={styles.container}>
         <h2>Track {this.props.audioIndex}</h2>
         {progressBar}
-        <audio className="audio" controls={false} ref="audio" src={this.props.audioSource}></audio>
+        <audio className="audio" controls={false} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
