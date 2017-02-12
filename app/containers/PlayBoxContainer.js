@@ -1,7 +1,7 @@
 // @flow
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { openFile, openDirectory } from '../actions/loadsong';
+import { playSong, openFile, openDirectory } from '../actions/loadsong';
 import PlayBox from '../components/PlayBox';
 
 function mapStateToProps(state, props) {
@@ -21,7 +21,7 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ openFile, openDirectory }, dispatch)
+  return bindActionCreators({ playSong, openFile, openDirectory }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayBox);

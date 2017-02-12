@@ -29,6 +29,12 @@ export const createPlaylistAction = (playerIndex, folder) => {
     }
 }
 
+export const playSong = (playerIndex, source) => {
+  return (dispatch) =>{
+    console.log(source);
+    dispatch(createSongAction(playerIndex, source));
+  }
+}
 
 export const openFile = (playerIndex) => {
   return (dispatch) => {
@@ -39,6 +45,7 @@ export const openFile = (playerIndex) => {
       ]
     });
     if (file[0]) {
+      console.log(file[0]);
       dispatch(createSongAction(playerIndex, file[0]));
     }
   };

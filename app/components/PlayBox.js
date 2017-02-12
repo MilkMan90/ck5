@@ -61,7 +61,8 @@ export default class PlayBox extends Component {
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
         <div className={styles.volumeControl}></div>
-        <Playlist audioIndex={this.props.audioIndex} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
+        <Playlist audioIndex={this.props.audioIndex}
+        playSong={this.props.playSong} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
       </div>
     );
   }
