@@ -30,8 +30,8 @@ export const createPlaylistAction = (playerIndex, folder) => {
 }
 
 export const playSong = (playerIndex, source) => {
+  console.log(playerIndex, source);
   return (dispatch) =>{
-    console.log(source);
     dispatch(createSongAction(playerIndex, source));
   }
 }
@@ -63,11 +63,21 @@ export const openDirectory = (playerIndex) => {
       folderpath: file[0],
       filenames: []
     }
-    fs.readdir(file[0], ['object'], (err, files) => {
+    fs.readdir(file[0], (err, files) => {
       for (let indiv of files) {
         folder.filenames.push(indiv)
       }
-      dispatch(createPlaylistAction(playerIndex, folder));
+
+      folder.filepaths = folder.filenames.map((file)=>{
+          return folder.folderpath +'/'+ file
+      })
+
+      let promiseArray = folder.filepaths.map((file) => createSongObject(file))
+
+      Promise.all(promiseArray).then((songData) => {
+        dispatch(createPlaylistAction(playerIndex, songData));
+      }).catch();
+
     })
   };
 };

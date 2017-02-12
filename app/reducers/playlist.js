@@ -1,21 +1,10 @@
-export default function playList(state = { audioOnePlaylist: '', audioTwoPlaylist: '' }, action) {
-
-  let folder;
-  if(action.folder){
-    function addFolderToFilePath(folder){
-      return folder.filenames.map((file)=>{
-        return folder.folderpath +'/'+ file
-      })
-    }
-    folder = action.folder;
-    folder.filepaths = addFolderToFilePath(folder)
-  }
+export default function playList(state = { audioOnePlaylist: [], audioTwoPlaylist: [] }, action) {
 
   switch (action.type) {
     case 'AUDIO_ONE_PLAYLIST':
-      return Object.assign({}, state, { audioOnePlaylist: folder });
+      return Object.assign({}, state, { audioOnePlaylist: state.audioOnePlaylist.concat(action.folder) });
     case 'AUDIO_TWO_PLAYLIST':
-      return Object.assign({}, state, { audioTwoPlaylist: folder });
+      return Object.assign({}, state, { audioTwoPlaylist: state.audioTwoPlaylist.concat(action.folder) });
     default:
       return state;
   }

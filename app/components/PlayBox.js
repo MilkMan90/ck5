@@ -9,19 +9,28 @@ export default class PlayBox extends Component {
   constructor(){
     super()
     this.state = {
+      playIndex: 0,
+      play: false,
       currentSongTime: 0,
       currentSongDuration: 0
     }
   }
-  componentDidMount(){
 
+  componentDidMount(){
+    console.log(this.refs);
   }
+
   playAudio() {
+    this.setState({
+      play: true
+    })
     this.refs.audio.play()
   }
+
   pauseAudio() {
     this.refs.audio.pause()
   }
+
   stopAudio() {
     this.refs.audio.load()
   }
@@ -48,8 +57,17 @@ export default class PlayBox extends Component {
   }
 
   updateSongPosition(percent) {
-    // this.refs.audio.currentTime = this.refs.audio.duration*percent;
+    this.refs.audio.currentTime = this.refs.audio.duration*percent;
     this.state.currentSongTime = this.state.currentSongDuration*percent;
+  }
+
+  playSongFromPlaylist(audioIndex, source, index){
+    console.log(source, index);
+    this.props.playSong(this.props.audioIndex, source)
+  }
+
+  playNextSong(){
+
   }
 
   render() {
@@ -57,18 +75,17 @@ export default class PlayBox extends Component {
     if(this.props.audioSource){
       progressBar = <ProgressBar duration={this.state.currentSongDuration} currentTime={this.state.currentSongTime} audioSource={this.props.audioSource} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
     }
-
     return (
       <div className={styles.container}>
         <h2>Track {this.props.audioIndex}</h2>
         {progressBar}
-        <audio className="audio" controls={false} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
+        <audio className="audio" controls={false} onEnded={()=>{this.playNextSong()}} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
         <div className={styles.volumeControl}></div>
         <Playlist audioIndex={this.props.audioIndex}
-        playSong={this.props.playSong} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
+        playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
       </div>
     );
   }
