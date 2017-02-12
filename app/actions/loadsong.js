@@ -30,7 +30,7 @@ export const createPlaylistAction = (playerIndex, folder) => {
 }
 
 export const playSong = (playerIndex, source) => {
-  return (dispatch) => {
+  return (dispatch) =>{
     dispatch(createSongAction(playerIndex, source));
   }
 }
@@ -44,7 +44,11 @@ export const openFile = (playerIndex) => {
       ]
     });
     if (file[0]) {
-      dispatch(createSongAction(playerIndex, file[0]));
+      let promise = createSongObject(file[0])
+
+      promise.then((songData) => {
+        dispatch(createPlaylistAction(playerIndex, songData));
+      }).catch();
     }
   };
 };

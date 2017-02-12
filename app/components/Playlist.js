@@ -10,6 +10,10 @@ export default class Playlist extends Component {
 
   }
 
+  sendFileToStore(){
+    this.props.openFile(this.props.audioIndex);
+  }
+  
   sendFolderToStore() {
     this.props.openFolder(this.props.audioIndex)
   }
@@ -31,7 +35,8 @@ export default class Playlist extends Component {
     }
     return (
       <div className={styles.playlistcontainer}>
-        <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>addFiles</button>
+        <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Add File</button>
+        <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>Add Folder</button>
         <ol className={styles.songlist}>{ playlist }</ol>
       </div>
     );

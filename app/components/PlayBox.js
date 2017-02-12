@@ -28,6 +28,9 @@ export default class PlayBox extends Component {
   }
 
   pauseAudio() {
+    this.setState({
+      play: false
+    })
     this.refs.audio.pause()
   }
 
@@ -44,10 +47,6 @@ export default class PlayBox extends Component {
 
   componentWillReceiveProps(){
     this.refs.audio.volume = this.props.volume;
-  }
-
-  sendFileToStore(){
-    this.props.openFile(this.props.audioIndex);
   }
 
   convertSecondsToTime(inputSeconds){
@@ -71,10 +70,9 @@ export default class PlayBox extends Component {
     setTimeout(() => {
       this.playAudio();
     }, 100)
-
   }
 
-  playNextSong(){
+  playNextSong() {
     if(this.props.playList[this.state.playIndex + 1]){
       this.setState({
         playIndex: this.state.playIndex + 1
@@ -100,10 +98,11 @@ export default class PlayBox extends Component {
         <audio className="audio" controls={false} onEnded={()=>{this.playNextSong()}} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
         <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
-        <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
+        {/* <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button> */}
         <div className={styles.volumeControl}></div>
         <Playlist audioIndex={this.props.audioIndex}
-        playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
+        playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}
+        openFile={this.props.openFile}/>
       </div>
     );
   }
