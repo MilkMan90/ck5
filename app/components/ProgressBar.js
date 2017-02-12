@@ -6,8 +6,7 @@ export default class ProgressBar extends Component {
   constructor() {
     super()
     this.state = {
-    track: ''
-
+      track: ''
     }
   }
   componentDidMount() {
@@ -28,7 +27,7 @@ export default class ProgressBar extends Component {
   updateSongPosition(){
     this.props.updateSongPosition(this.refs.timingSlider.value/1000)
   }
-  
+
   render(){
     return (
       <div className={styles.container}>

@@ -6,30 +6,34 @@ import { getSongTags, createSongObject } from 'electron-audio-conversion'
 
 //
 export default class Playlist extends Component {
+  constructor() {
+    super()
+    this.state = {
+      playlist: []
+    }
+  }
 
   sendFolderToStore() {
     this.props.openFolder(this.props.audioIndex)
   }
 
-  renderPlaylist() {
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps);
+    this.createPlaylist(nextProps);
+  }
 
-    let promiseArray = this.props.playlist.filepaths.map((file)=>{
-      return createSongObject(file)
-    })
+  createPlaylist(nextProps) {
+    if(nextProps.playlist !== ""){
+      let promiseArray = nextProps.playlist.filepaths.map((file)=>{
+        return createSongObject(file)
+      })
 
-    console.log(promiseArray);
-    
-    Promise.all(promiseArray).then(values => {
-      console.log(values);
-    })
-
-    // const filenames = this.props.playlist.filepaths.map((file, i) => {
-    //   createSongObject(file).then((songObj)=>{
-    //     console.log(songObj);
-    //     return <li className={styles.songitem} key={i} onClick={()=>{this.playSong(file)}}>{file}</li>
-    //   })
-    // })
-    // return filenames
+      Promise.all(promiseArray).then((songData)=>{
+        this.setState({
+          playlist: this.state.playlist.concat(songData)
+        })
+      })
+    }
   }
 
   playSong(source){
@@ -37,10 +41,16 @@ export default class Playlist extends Component {
   }
 
   render() {
+    let playlist;
+    if(this.state.playlist !== []){
+      playlist = this.state.playlist.map((song, i)=>{
+        return <li className={styles.songitem} key={i} onClick={()=>{this.playSong(file)}}>{song.title}</li>
+      })
+    }
     return (
       <div className={styles.playlistcontainer}>
         <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>addFiles</button>
-        <ol className={styles.songlist}>{ this.props.playlist && this.renderPlaylist() }</ol>
+        <ol className={styles.songlist}>{ playlist }</ol>
       </div>
     );
   }
