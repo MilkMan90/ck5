@@ -19,7 +19,6 @@ export default class Playlist extends Component {
   }
 
   playSong(source, index){
-    console.log(source);
     this.props.playSong(this.props.audioIndex, source, index)
   }
 

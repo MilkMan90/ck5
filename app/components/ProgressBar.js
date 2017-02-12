@@ -10,12 +10,12 @@ export default class ProgressBar extends Component {
     }
   }
   componentDidMount() {
-    createSongObject(this.props.audioSource)
-    .then((track) => {
-      this.setState({
-        track
-      })
-    })
+    // createSongObject(this.props.audioSource)
+    // .then((track) => {
+    //   this.setState({
+    //     track
+    //   })
+    // })
   }
 
   convertSecondsToTime(inputSeconds){
@@ -31,9 +31,9 @@ export default class ProgressBar extends Component {
   render(){
     return (
       <div className={styles.container}>
-        <div>{this.state.track.title}</div>
-        <div>{this.state.track.artist}</div>
-        <div>{this.state.track.album}</div>
+        <div>{this.props.audioSource.title}</div>
+        <div>{this.props.audioSource.artist}</div>
+        <div>{this.props.audioSource.album}</div>
 
         <span>{this.convertSecondsToTime(this.props.currentTime)}</span>
         /

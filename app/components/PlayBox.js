@@ -62,8 +62,16 @@ export default class PlayBox extends Component {
   }
 
   playSongFromPlaylist(audioIndex, source, index){
-    console.log(source, index);
+    this.setState({
+      playIndex: index
+    })
+
     this.props.playSong(this.props.audioIndex, source)
+
+    setTimeout(() => {
+      this.playAudio();
+    }, 100)
+
   }
 
   playNextSong(){
@@ -73,7 +81,7 @@ export default class PlayBox extends Component {
   render() {
     let progressBar;
     if(this.props.audioSource){
-      progressBar = <ProgressBar duration={this.state.currentSongDuration} currentTime={this.state.currentSongTime} audioSource={this.props.audioSource} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
+      progressBar = <ProgressBar duration={this.state.currentSongDuration} currentTime={this.state.currentSongTime} audioSource={this.props.playList[this.state.playIndex]} updateSongPosition={(percent)=>{this.updateSongPosition(percent)}} />
     }
     return (
       <div className={styles.container}>
