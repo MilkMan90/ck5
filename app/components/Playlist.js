@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import styles from './Playlist.css'
-// import Sound from 'react-sound';
+import { getSongTags, createSongObject } from 'electron-audio-conversion'
 
 //
 export default class Playlist extends Component {
@@ -12,18 +12,16 @@ export default class Playlist extends Component {
   }
 
   renderPlaylist() {
-    if(this.props.playlist !== '') {
-      const filenames  = this.props.playlist.filenames.map((m) => {
-         return <li>{this.props.playlist.folderpath}/{m}</li>
-      })
-      return filenames
-    }
+    const filenames = this.props.playlist.filenames.map((m) => {
+      return <li key={m}>{m}</li>
+    })
+    return filenames
   }
   render() {
     return (
       <div className={styles.playlistcontainer}>
         <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>addFiles</button>
-        { this.props.playlist ? this.renderPlaylist() : '' }
+        <ol>{ this.props.playlist ? this.renderPlaylist() : '' }</ol>
       </div>
     );
   }
