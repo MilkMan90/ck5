@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import styles from './PlayBox.css';
 import ProgressBar from './ProgressBar';
+import Playlist from './Playlist'
 
 export default class PlayBox extends Component {
   constructor(){
@@ -62,6 +63,7 @@ export default class PlayBox extends Component {
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
         <div className={styles.volumeControl}></div>
+        <Playlist audioIndex={this.props.audioIndex} openFolder={this.props.openDirectory}/>
       </div>
     );
   }

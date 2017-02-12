@@ -46,7 +46,7 @@ const installExtensions = async () => {
 
 const openFile = () => {
   let file = dialog.showOpenDialog(mainWindow, {
-    properties: ['openFile'],
+    properties: ['openFile', 'openDirectory'],
     filters: [
       { name: 'mp3', extensions: ['.mp3'] }
     ]

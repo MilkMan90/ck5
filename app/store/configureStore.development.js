@@ -4,11 +4,12 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware, push } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import rootReducer from '../reducers';
-import { openFile } from '../actions/loadsong';
+import { openFile, openDirectory } from '../actions/loadsong';
 
 
 const actionCreators = {
-  openFile
+  openFile,
+  openDirectory
 };
 
 const logger = createLogger({
