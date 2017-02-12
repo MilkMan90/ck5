@@ -6,17 +6,24 @@ import styles from './Playlist.css'
 
 //
 export default class Playlist extends Component {
-  componentDidMount() {
-
-  }
 
   sendFolderToStore() {
     this.props.openFolder(this.props.audioIndex)
+  }
+
+  renderPlaylist() {
+    if(this.props.playlist !== '') {
+      const filenames  = this.props.playlist.filenames.map((m) => {
+         return <li>{this.props.playlist.folderpath}/{m}</li>
+      })
+      return filenames
+    }
   }
   render() {
     return (
       <div className={styles.playlistcontainer}>
         <button className={styles.addFilesButton} onClick={() => { this.sendFolderToStore(); }}>addFiles</button>
+        { this.props.playlist ? this.renderPlaylist() : '' }
       </div>
     );
   }

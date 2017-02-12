@@ -31,8 +31,6 @@ export default class PlayBox extends Component {
 
   componentWillReceiveProps(){
     this.refs.audio.volume = this.props.volume;
-    console.log(this.refs)
-    console.log('vol', this.props.volume)
   }
 
   sendFileToStore(){
@@ -63,7 +61,7 @@ export default class PlayBox extends Component {
         <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
         <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button>
         <div className={styles.volumeControl}></div>
-        <Playlist audioIndex={this.props.audioIndex} openFolder={this.props.openDirectory}/>
+        <Playlist audioIndex={this.props.audioIndex} openFolder={this.props.openDirectory} playlist={this.props.playList}/>
       </div>
     );
   }
