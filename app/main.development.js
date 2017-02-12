@@ -46,7 +46,7 @@ const installExtensions = async () => {
 
 const openFile = () => {
   let file = dialog.showOpenDialog(mainWindow, {
-    properties: ['openFile'],
+    properties: ['openFile', 'openDirectory'],
     filters: [
       { name: 'mp3', extensions: ['.mp3'] }
     ]
@@ -61,8 +61,8 @@ app.on('ready', async () => {
 
   mainWindow = new BrowserWindow({
     show: false,
-    width: 1024,
-    height: 728
+    width: 800,
+    height: 400
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -71,7 +71,6 @@ app.on('ready', async () => {
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
-
   });
 
   mainWindow.on('closed', () => {
