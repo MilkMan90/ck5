@@ -10,7 +10,7 @@
 .crossfader {
   background: none;
   -webkit-appearance: none;
-  width: 100%;
+  width: 150px;
   height: 30px;
   margin-top: 200px;
 }
@@ -35,7 +35,7 @@
   background: #ffffff;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -2.6px;
+  margin-top: -10px;
 }
 .crossfader:focus::-webkit-slider-runnable-track {
   background: #829cbe;
