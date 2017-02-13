@@ -1,6 +1,6 @@
-import { createSongObject, createSongUri } from 'electron-audio-conversion'
-import dataurl from 'dataurl';
+import { createSongObject } from 'electron-audio-conversion';
 import fs from 'fs';
+
 const { dialog } = require('electron').remote;
 
 export const createSongAction = (playerIndex, song) => {
@@ -69,7 +69,7 @@ export const openDirectory = (playerIndex) => {
       for (let indiv of files) {
         folder.filenames.push(indiv)
       }
-
+      
       folder.filepaths = folder.filenames.map((file)=>{
           return folder.folderpath +'/'+ file
       })
@@ -79,7 +79,6 @@ export const openDirectory = (playerIndex) => {
       Promise.all(promiseArray).then((songData) => {
         dispatch(createPlaylistAction(playerIndex, songData));
       }).catch();
-
     })
   };
 };

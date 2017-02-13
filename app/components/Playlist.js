@@ -1,16 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import styles from './Playlist.css'
-import { getSongTags, createSongObject } from 'electron-audio-conversion'
 import openFileButton from '../imgs/file-music.svg'
 import openFolderButton from '../imgs/folder-plus.svg'
 
 export default class Playlist extends Component {
-  constructor() {
-    super()
-
-  }
 
   sendFileToStore(){
     this.props.openFile(this.props.audioIndex);
@@ -18,10 +12,6 @@ export default class Playlist extends Component {
 
   sendFolderToStore() {
     this.props.openFolder(this.props.audioIndex)
-  }
-
-  componentWillReceiveProps(nextProps){
-
   }
 
   playSong(source, index){

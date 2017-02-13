@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import styles from './PlayerWindow.css';
 import PlayBoxContainer from '../containers/PlayBoxContainer'
 
@@ -10,12 +9,9 @@ export default class PlayerWindow extends Component {
     this.state = {
       audio1Volume: 1,
       audio2Volume: 1,
-      gainFactor: 2
     }
   }
-  componentDidMount() {
 
-  }
   updateVolumes() {
     if(this.refs.crossfader.value >= 0){
       this.setState({
@@ -31,7 +27,6 @@ export default class PlayerWindow extends Component {
   }
 
   render() {
-
     return (
       <div className={styles.container}>
         <PlayBoxContainer volume={this.state.audio1Volume} audioIndex = {1}/>
