@@ -32,7 +32,7 @@ export default class Playlist extends Component {
     let playlist;
     if(this.props.playlist.length !== 0){
       playlist = this.props.playlist.map((song, i) => {
-        return <li className={styles.songitem} key={i} onClick={() => { this.playSong(song.filePath, i) }}>{song.title}</li>
+        return <li className={styles.songitem} key={i} onClick={() => { this.playSong(song.filePath, i) }}>{song.title} - {song.artist} - {song.album}</li>
       })
     }
     return (

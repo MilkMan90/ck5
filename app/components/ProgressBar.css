@@ -1,7 +1,6 @@
 .container {
-
+  height: 75px;
 }
-
 
 .slider input[type=range].time-control {
   -webkit-appearance: none;
