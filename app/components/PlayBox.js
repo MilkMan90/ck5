@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import playButton from '../imgs/play3.svg'
 import pauseButton from '../imgs/pause2.svg'
 import stopButton from '../imgs/stop2.svg'
@@ -15,23 +14,9 @@ export default class PlayBox extends Component {
     super()
     this.state = {
       playIndex: 0,
-      play: false,
       currentSongTime: 0,
       currentSongDuration: 0
     }
-  }
-
-  componentDidMount(){
-  }
-
-  playAudio() {
-    this.setState({
-      play: true
-    })
-    this.refs.audio.play()
-    let gain = this.refs.audio.createAnalyser()
-    this.refs.audio.connect(gain)
-    console.log('gain', gain)
   }
 
   pauseAudio() {
@@ -84,7 +69,6 @@ export default class PlayBox extends Component {
       this.setState({
         playIndex: this.state.playIndex + 1
       })
-
       this.props.playSong(this.props.audioIndex, this.props.playList[this.state.playIndex+1].filePath)
 
       setTimeout(() => {
@@ -109,7 +93,7 @@ export default class PlayBox extends Component {
         <button className={styles.nextButton} onClick={() => { this.nextSong(); }}><img src={lastButton}/></button>
 
         <div className={styles.volumeControl}></div>
-        
+
         <Playlist audioIndex={this.props.audioIndex}
         playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}
         openFile={this.props.openFile}/>

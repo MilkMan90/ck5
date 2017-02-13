@@ -1,6 +1,4 @@
-
-import { app, BrowserWindow, Menu, shell, dialog } from 'electron';
-import fs from 'fs';
+import { app, BrowserWindow, Menu, shell } from 'electron';
 
 let menu;
 let template;
@@ -22,7 +20,6 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-
 const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
     const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
@@ -43,33 +40,19 @@ const installExtensions = async () => {
   }
 };
 
-
-const openFile = () => {
-  let file = dialog.showOpenDialog(mainWindow, {
-    properties: ['openFile', 'openDirectory'],
-    filters: [
-      { name: 'mp3', extensions: ['.mp3'] }
-    ]
-  });
-  if (!file) { return; }
-  let content = fs.readFileSync(file)
-};
-
 app.on('ready', async () => {
   await installExtensions();
 
-
   mainWindow = new BrowserWindow({
     show: false,
-    width: 800,
+    width: 1000,
     height: 600,
     titleBarStyle: 'hidden-inset',
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
-
-  mainWindow.once('ready-to-show', () => {
+  mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();
     mainWindow.focus();
   });
@@ -79,7 +62,6 @@ app.on('ready', async () => {
   });
 
   if (process.env.NODE_ENV === 'development') {
-    mainWindow.openDevTools();
     mainWindow.webContents.on('context-menu', (e, props) => {
       const { x, y } = props;
 
