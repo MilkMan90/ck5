@@ -35,7 +35,7 @@ export default class PlayerWindow extends Component {
     return (
       <div className={styles.container}>
         <PlayBoxContainer volume={this.state.audio1Volume} audioIndex = {1}/>
-        <input id="crossfader" min={-100} max={100} onChange={()=>{this.updateVolumes()}} ref="crossfader" type="range"/>
+        <input className={styles.crossfader} id="crossfader" min={-100} max={100} onChange={()=>{this.updateVolumes()}} ref="crossfader" type="range"/>
         <PlayBoxContainer volume={this.state.audio2Volume} audioIndex = {2}/>
       </div>
     );
