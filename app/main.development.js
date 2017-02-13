@@ -62,13 +62,14 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 800,
-    height: 400
+    height: 600,
+    titleBarStyle: 'hidden-inset',
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
 
-  mainWindow.webContents.on('did-finish-load', () => {
+  mainWindow.once('ready-to-show', () => {
     mainWindow.show();
     mainWindow.focus();
   });

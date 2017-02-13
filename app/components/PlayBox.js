@@ -17,7 +17,6 @@ export default class PlayBox extends Component {
   }
 
   componentDidMount(){
-    console.log(this.refs);
   }
 
   playAudio() {
@@ -25,6 +24,9 @@ export default class PlayBox extends Component {
       play: true
     })
     this.refs.audio.play()
+    let gain = this.refs.audio.createAnalyser()
+    this.refs.audio.connect(gain)
+    console.log('gain', gain)
   }
 
   pauseAudio() {
