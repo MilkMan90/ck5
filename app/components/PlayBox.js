@@ -1,6 +1,11 @@
 // @flow
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import playButton from '../imgs/play3.svg'
+import pauseButton from '../imgs/pause2.svg'
+import stopButton from '../imgs/stop2.svg'
+import lastButton from '../imgs/last.svg'
+import firstButton from '../imgs/first.svg'
 import styles from './PlayBox.css';
 import ProgressBar from './ProgressBar';
 import Playlist from './Playlist'
@@ -98,10 +103,13 @@ export default class PlayBox extends Component {
         <h2>Track {this.props.audioIndex}</h2>
         {progressBar}
         <audio className="audio" controls={false} onEnded={()=>{this.playNextSong()}} onTimeUpdate={()=>{this.updateCurrentTime();}} ref="audio" src={this.props.audioSource}></audio>
-        <button className={styles.playButton} onClick={() => { this.playAudio(); }}>Play</button>
-        <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}>Pause</button>
-        {/* <button className={styles.openButton} onClick={() => { this.sendFileToStore(); }}>Open</button> */}
+        <button className={styles.lastButton} onClick={() => { this.lastSong(); }}><img src={firstButton}/></button>
+        <button className={styles.playButton} onClick={() => { this.playAudio(); }}><img src={playButton}/></button>
+        <button className={styles.pauseButton} onClick={() => { this.pauseAudio(); }}><img src={pauseButton}/></button>
+        <button className={styles.nextButton} onClick={() => { this.nextSong(); }}><img src={lastButton}/></button>
+
         <div className={styles.volumeControl}></div>
+        
         <Playlist audioIndex={this.props.audioIndex}
         playSong={(audioIndex, source, index)=>{this.playSongFromPlaylist(audioIndex, source, index)}} openFolder={this.props.openDirectory} playlist={this.props.playList}
         openFile={this.props.openFile}/>

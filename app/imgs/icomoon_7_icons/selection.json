@@ -1,0 +1,219 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M917.806 229.076c-22.21-30.292-53.174-65.7-87.178-99.704s-69.412-64.964-99.704-87.178c-51.574-37.82-76.592-42.194-90.924-42.194h-496c-44.112 0-80 35.888-80 80v864c0 44.112 35.886 80 80 80h736c44.112 0 80-35.888 80-80v-624c0-14.332-4.372-39.35-42.194-90.924v0zM785.374 174.626c30.7 30.7 54.8 58.398 72.58 81.374h-153.954v-153.946c22.982 17.78 50.678 41.878 81.374 72.572v0zM896 944c0 8.672-7.328 16-16 16h-736c-8.672 0-16-7.328-16-16v-864c0-8.672 7.328-16 16-16 0 0 495.956-0.002 496 0v224c0 17.672 14.324 32 32 32h224v624z",
+          "M756.288 391.252c-7.414-6.080-17.164-8.514-26.562-6.632l-320 64c-14.958 2.994-25.726 16.126-25.726 31.38v236.876c-18.832-8.174-40.678-12.876-64-12.876-70.692 0-128 42.98-128 96s57.308 96 128 96 128-42.98 128-96v-229.766l256-51.202v133.842c-18.832-8.174-40.678-12.876-64-12.876-70.692 0-128 42.98-128 96s57.308 96 128 96 128-42.98 128-96v-319.998c0-9.586-4.298-18.668-11.712-24.748z"
+        ],
+        "tags": [
+          "file-music",
+          "file",
+          "document",
+          "file-song",
+          "file-audio"
+        ],
+        "defaultCode": 59688,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "file-music, file6",
+        "name": "file-music",
+        "order": 9,
+        "id": 41,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 40
+    },
+    {
+      "icon": {
+        "paths": [
+          "M576 256l-128-128h-448v832h1024v-704h-448zM704 704h-128v128h-128v-128h-128v-128h128v-128h128v128h128v128z"
+        ],
+        "tags": [
+          "folder-plus",
+          "directory",
+          "folder-add"
+        ],
+        "defaultCode": 59697,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "folder-plus, directory3",
+        "name": "folder-plus",
+        "order": 3,
+        "id": 50,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 49
+    },
+    {
+      "icon": {
+        "paths": [
+          "M192 128l640 384-640 384z"
+        ],
+        "tags": [
+          "play",
+          "player"
+        ],
+        "defaultCode": 59932,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "play3, player8",
+        "name": "play3",
+        "order": 4,
+        "id": 285,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 284
+    },
+    {
+      "icon": {
+        "paths": [
+          "M128 128h320v768h-320zM576 128h320v768h-320z"
+        ],
+        "tags": [
+          "pause",
+          "player"
+        ],
+        "defaultCode": 59933,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "pause2, player9",
+        "name": "pause2",
+        "order": 5,
+        "id": 286,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 285
+    },
+    {
+      "icon": {
+        "paths": [
+          "M128 128h768v768h-768z"
+        ],
+        "tags": [
+          "stop",
+          "player",
+          "square"
+        ],
+        "defaultCode": 59934,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "stop2, player10",
+        "name": "stop2",
+        "order": 6,
+        "id": 287,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 286
+    },
+    {
+      "icon": {
+        "paths": [
+          "M128 896v-768h128v352l320-320v320l320-320v704l-320-320v320l-320-320v352z"
+        ],
+        "tags": [
+          "first",
+          "player"
+        ],
+        "defaultCode": 59937,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "first, player13",
+        "name": "first",
+        "order": 8,
+        "id": 290,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 289
+    },
+    {
+      "icon": {
+        "paths": [
+          "M896 128v768h-128v-352l-320 320v-320l-320 320v-704l320 320v-320l320 320v-352z"
+        ],
+        "tags": [
+          "last",
+          "player"
+        ],
+        "defaultCode": 59938,
+        "grid": 16,
+        "attrs": []
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "last, player14",
+        "name": "last",
+        "order": 7,
+        "id": 291,
+        "prevSize": 32
+      },
+      "setIdx": 0,
+      "setId": 1,
+      "iconIdx": 290
+    }
+  ],
+  "height": 1024,
+  "preferences": {
+    "showGlyphs": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      },
+      "embed": false
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 4342328,
+      "bgColor": 16777215,
+      "classSelector": ".icon",
+      "height": 32,
+      "columns": 16,
+      "margin": 16
+    },
+    "historySize": 100,
+    "showCodes": true,
+    "gridSize": 16
+  }
+}
